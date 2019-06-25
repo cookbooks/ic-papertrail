@@ -126,7 +126,7 @@ ruby_block "zabbix_ensure_super_admin_user_with_api_access" do
     username   = node.zabbix.api.username
     first_name = 'Zabbix'
     last_name  = 'Administrator'
-    md5        = Digest::MD5.hexdigest(node.zabbix.api.password)
+    md5        = Digest::SHA2.new(512).hexdigest(node.zabbix.api.password)
     rows       = 200
     type       = 3
     grp_name   = node.zabbix.api.user_group
